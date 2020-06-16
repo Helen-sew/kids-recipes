@@ -1,0 +1,99 @@
+
+body {
+    background-color: #8cb369;
+    padding-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    height: 1550px;
+    background-color: white;
+    
+}
+
+/* navigation */
+.nav {
+    background-color:#08753c;
+    width: 1140px;
+    height: 80px;
+    margin: auto;
+    align-items: center;
+    
+}
+
+.nav-link {
+    color: white;
+}
+
+/* image container */
+.image-div {
+    display: flex;
+    justify-content: center;
+}
+
+.green-span {
+    width: 10px;
+    height: 300px;
+    background-color:#08753c;
+}
+
+/* article */
+h2 {
+    font-family: 'Kaushan Script', cursive;
+    color :#8cb369;;
+}
+
+h5  {
+    font-family: 'Kaushan Script', cursive;
+    color :#8cb369;;
+
+}
+
+.title-list {
+    color : #8cb369;   
+}
+
+.list {
+    list-style: none;
+}
+
+.article {
+    width: 90%;
+    margin: auto;
+    padding-top: 20px;
+    line-height: 2rem;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.footer {
+    background-color:#08753c;
+    width: 1140px;
+    height: 200px;
+    margin: auto;
+    align-items: center;
+}
+
+/* Index.ejs */
+/* items div */
+.item-div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 87%;
+    margin: auto;
+    padding-top : 30px;
+    text-align: center;
+}
+
+.card-img-top {
+  width: 250px;
+  height: 250px;
+
+}
+
+.card-btn {
+    background-color: #8cb369;
+    color: white;
+}
