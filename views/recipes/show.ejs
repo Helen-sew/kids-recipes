@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+   <!-- Navigation -->
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recipes">Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recipes/new">Create Recipe</a>
+        </li>
+    </ul>
+
+<div class="container"> 
+    <div class="top-container">
+            <div class="image-title-div">
+                <h1><%= item.title %></h1>
+                <br>
+                <img src="<%=item.img%>" style="width: 500px; height: 350px;">    
+            </div>
+             <div class="buttons-div">
+                 <div class="div-cus-btn">
+                    <a href="/recipes/new"><button class="btn card-btn btn-lg" type="submit">CREATE RECIPE</button></a>
+                </div>
+                <br>
+                <div class="div-cus-btn">
+                    <form action="/recipes/<%= item.title%>?_method=DELETE" method="POST">
+                        <button class="btn card-btn btn-lg" type="submit">DELETE RECIPE</button>
+                    </form>
+                </div>
+                <br>
+                <div class="div-cus-btn">
+                    <a href="/recipes/<%= item.title%>/edit"><button class="btn card-btn btn-lg" type="submit">EDIT RECIPE</button></a>    
+                </div>
+                <br>
+                <br>
+
+                <p>To serve = <%=item.toServe%></p>
+            </div>
+    </div>
+
+
+    <div class="ing-dir-div"> 
+        <div class="card border-success mb-3" style="width: 90%;">
+            <div class="card-header">Ingredients</div>
+            <div class="card-body">
+                <% item.ingredients.forEach(ingredient => { %>
+                 <p class=""><%=ingredient%></p>
+
+                <%});%>
+            </div>
+                      
+           
+        </div>
+    
+
+    
+        <div class="card border-success mb-3" style="width: 90%;">
+            <div class="card-header">Directions</div>
+            <div class="card-body">
+                <% item.directions.forEach(step => { %>
+                     <p class=""><%=step %></p>
+                <%});%>
+            </div>
+        </div>
+
+
+        <div class="card border-success mb-3" style="width: 90%;">
+            <div class="card-header">Comments</div>
+            <div class="card-body">
+                <p class=""><%=item.comments%></p>
+            </div>
+        </div>
+
+
+
+
+    </div>
+            
+             
+</div>        
+		 
+		
+
+<!-- footer -->
+<div class="footer"></div>
+
+
+
+
+
+</body>
+</html>

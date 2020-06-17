@@ -10,11 +10,64 @@ module.exports = {
     },
     async getNewForm (req, res) {
         await res.render('recipes/new.ejs');
+    },
+    async show (req, res) {
+        try {
+            const item = await recipeRepository.show(req.params.title);
+            return res.render('recipes/show.ejs', {item});
+        }catch (err) {
+            return res.send(err.message);
+        }
+    },
+    async create (req, res) {
+        try{
+            const newItem = {
+                'title': req.body.title,
+                'img' : req.body.img,
+                'ingredients': [req.body.ingredients],
+                'toServe': req.body.toServe,
+                'directions': [req.body.directions],
+                'comments': req.body.comments
+            }  
+            await recipeRepository.create(newItem);
+            return res.redirect('/recipes');
+        }catch (err) {
+            return res.send(err.message);
+        }
+    },
+    async update (req, res) {
+        try{
+            const item = {
+                'title': req.body.title,
+                'img' : req.body.img,
+                'ingredients': [req.body.ingredients],
+                'toServe': req.body.toServe,
+                'directions': [req.body.directions],
+                'comments': req.body.comments
+            }  
+            await recipeRepository.update(req.params.title, item);
+            return res.redirect('/recipes');
+        }catch (err) {
+            return res.render('errors/404.ejs', {err});
+        }
+    },
+    async getEditForm (req, res) {
+        try{
+            const item = await recipeRepository.getOneByTitle(req.params.title);
+            console.log(req.params.title);
+            console.log(item);
+            return res.render('recipes/edit.ejs', {item} );
+        }catch(err) {
+            return res.render('errors/404.ejs', {err});
+        }
+    },
+    async delete (req, res) {
+        try {
+             await recipeRepository.delete(req.params);
+             return res.redirect('/recipes');
+        }catch (err) {
+            return res.send(err.message);
+        }
     }
-
-    
-    
-
-
 
 }

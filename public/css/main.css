@@ -3,12 +3,12 @@ body {
     background-color: #8cb369;
     padding-top: 20px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .container {
     width: 100%;
-    height: 1550px;
+    height: 1800px;
     background-color: white;
     
 }
@@ -96,4 +96,60 @@ h5  {
 .card-btn {
     background-color: #8cb369;
     color: white;
+    
+}
+
+/* new.ejs */
+
+.form-div {
+    width: 90%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+/* show.ejs */
+.top-container {
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    display: flex;
+    
+
+
+}
+
+.image-title-div {
+    width: 70%;
+    text-align: center;
+    margin-top: 30px;
+    
+
+}
+
+.buttons-div {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 110px;
+}
+
+.div-cus-btn {
+    width: 250px;
+    height: 60px;
+    background-color: #8cb369;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.ing-dir-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-header {
+    background-color: #8cb369; 
+    color : white;
 }

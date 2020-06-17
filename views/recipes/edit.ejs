@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+<!-- Navagation -->
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recipes">Recipes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/recipes/new">Create Recipe</a>
+        </li>
+      </ul>
+
+
+  <div class="container"> 
+     <div class="form-div">
+    <h1>Edit Your Recipe</h1>
+    <br>
+
+    
+    <form class="add-product-form" action="/recipes/<%= item.title %>?_method=PUT" method="POST">
+        
+        <div class="form-group">
+            <label for="img">Upload Image</label>
+            <input type="text" class="form-control border border-success" name="img" id="img" /> </br> 
+        </div>
+
+        <div class="form-group">    
+            <label for="title">Recipe Title</label>
+            <input type="text" class='form-control border border-success' name="title" id="title"/>
+        </div>
+
+        <div class="form-group">
+            <label for="ingredients" placeholder="put each ingredient on its own line">Ingredients:</label>
+            <textarea type="text" class="form-control border border-success" name="ingredients" id="ingredients" rows="15" placeholder="put each ingredient on its own line"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="directions">Directions</label> 
+            <textarea type="text" class="form-control border border-success" name="directions" id="directions" rows="15" placeholder="put each step on its own line"> </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="toServe">To Serve</label> 
+            <textarea class="form-control border border-success" name="toServe" id="toServe" rows='3' ></textarea>
+        </div><br>
+
+        <div class="form-group">
+            <label for="comments">Comments</label> 
+            <textarea class="form-control border border-success" name="comments" id="comments" rows='5' ></textarea>
+        </div>
+
+    </br>
+        <button class="btn card-btn" type="submit">Edit Recipe</button>
+
+      </form>
+    
+
+    </div>
+
+
+
+        
+    </div>
+
+
+<!-- Footer -->
+<div class="footer">
+
+
+</div>
+
+</body>
+</html>
