@@ -20,13 +20,17 @@ module.exports = {
         }
     },
     async create (req, res) {
+
+
+        const formattedIngredients = req.body.ingredients.split('\n');
+        const formattedDirections = req.body.directions.split('\n');
         try{
             const newItem = {
                 'title': req.body.title,
                 'img' : req.body.img,
-                'ingredients': [req.body.ingredients],
+                'ingredients': formattedIngredients,
                 'toServe': req.body.toServe,
-                'directions': [req.body.directions],
+                'directions': formattedDirections,
                 'comments': req.body.comments
             }  
             await recipeRepository.create(newItem);
@@ -36,13 +40,17 @@ module.exports = {
         }
     },
     async update (req, res) {
+        
+        const formattedIngredients = req.body.ingredients.split('\n');
+        const formattedDirections = req.body.directions.split('\n');
+
         try{
             const item = {
                 'title': req.body.title,
                 'img' : req.body.img,
-                'ingredients': [req.body.ingredients],
+                'ingredients': formattedIngredients,
                 'toServe': req.body.toServe,
-                'directions': [req.body.directions],
+                'directions': formattedDirections,
                 'comments': req.body.comments
             }  
             await recipeRepository.update(req.params.title, item);

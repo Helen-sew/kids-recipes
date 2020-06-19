@@ -30,6 +30,8 @@
                     <a href="/recipes/new"><button class="btn card-btn btn-lg" type="submit">CREATE RECIPE</button></a>
                 </div>
                 <br>
+                
+                    <% if(true) { %>
                 <div class="div-cus-btn">
                     <form action="/recipes/<%= item.title%>?_method=DELETE" method="POST">
                         <button class="btn card-btn btn-lg" type="submit">DELETE RECIPE</button>
@@ -39,6 +41,7 @@
                 <div class="div-cus-btn">
                     <a href="/recipes/<%= item.title%>/edit"><button class="btn card-btn btn-lg" type="submit">EDIT RECIPE</button></a>    
                 </div>
+            <%} %>
                 <br>
                 <br>
 
