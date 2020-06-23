@@ -5,8 +5,10 @@
     <%- include('../partials/head.ejs') %>
 </head>
 <body>
-   <!-- Navigation -->
+
+<!-- Navigation -->
     <ul class="nav">
+
         <li class="nav-item">
           <a class="nav-link active" href="/">Home</a>
         </li>
@@ -14,24 +16,26 @@
           <a class="nav-link" href="/recipes">Recipes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/recipes/new">Create Recipe</a>
-        </li>
+            <a class="nav-link" href="/recipes/new">Create Recipe</a>
+          </li>
+        <div>
+            <form action="/sessions?_method=DELETE", method='POST'>
+              <input type="submit" value="Log Out" style="background-color: #08753c; color:white; border-style: none;">
+              </form>
+          </div>
+ 
     </ul>
 
-<div class="container"> 
+
+<!-- Products -->
+<div class="container show-container"> 
     <div class="top-container">
             <div class="image-title-div">
                 <h1><%= item.title %></h1>
                 <br>
                 <img src="<%=item.img%>" style="width: 500px; height: 350px;">    
             </div>
-             <div class="buttons-div">
-                 <div class="div-cus-btn">
-                    <a href="/recipes/new"><button class="btn card-btn btn-lg" type="submit">CREATE RECIPE</button></a>
-                </div>
-                <br>
-                
-                    <% if(true) { %>
+             <div class="buttons-div">                  
                 <div class="div-cus-btn">
                     <form action="/recipes/<%= item.title%>?_method=DELETE" method="POST">
                         <button class="btn card-btn btn-lg" type="submit">DELETE RECIPE</button>
@@ -41,14 +45,12 @@
                 <div class="div-cus-btn">
                     <a href="/recipes/<%= item.title%>/edit"><button class="btn card-btn btn-lg" type="submit">EDIT RECIPE</button></a>    
                 </div>
-            <%} %>
                 <br>
                 <br>
-
                 <p>To serve = <%=item.toServe%></p>
             </div>
     </div>
-
+    
 
     <div class="ing-dir-div"> 
         <div class="card border-success mb-3" style="width: 90%;">
@@ -58,10 +60,9 @@
                  <p class=""><%=ingredient%></p>
 
                 <%});%>
-            </div>
-                      
-           
+            
         </div>
+    </div>
     
 
     
@@ -82,22 +83,60 @@
             </div>
         </div>
 
-
-
-
     </div>
-            
-             
+                         
 </div>        
-		 
+
+<!-- Footer -->
+<div class="footer">
+
+    <!-- Grid row-->
+    <div class="row">
+    
+      <!-- Grid column -->
+      <div class="col-md-12 py-4">
+        <div class="mb-2 flex-center">
+    
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+          </a>
+        </div>
+      </div>
+      <!-- Grid column -->
+    
+    </div>
+    <!-- Grid row-->
+    
+    
+    <!-- Copyright -->
+    <div>© 2020 Copyright: KidsRecipes.com</div>
+    <!-- Copyright -->
+    
+    </div>
 		
 
-<!-- footer -->
-<div class="footer"></div>
 
-
-
-
-
+    
 </body>
 </html>

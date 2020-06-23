@@ -12,7 +12,7 @@ module.exports = {
         await res.render('recipes/new.ejs');
     },
     async show (req, res) {
-        try {
+         try {
             const item = await recipeRepository.show(req.params.title);
             return res.render('recipes/show.ejs', {item});
         }catch (err) {

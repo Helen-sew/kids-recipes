@@ -1,0 +1,5 @@
+<p><%=err.message%></p>
+
+<% if(err.data) { %>
+    <p><%=JSON.stringify(err.data)%></p>
+<%}%>

@@ -1,5 +1,6 @@
 //Dependencies 
 const express = require('express');
+const session = require('express-session');
 const methodOverride = require('method-override');
 const app = express();
 require('dotenv').config();
@@ -8,6 +9,11 @@ const db = require('./db');
 
 
 //middlewares 
+app.use(session( {
+    secret: process.env.SECRET || 'mySecret',
+    resave: false,
+    saveUninitialized: false
+}));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));

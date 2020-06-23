@@ -1,7 +1,28 @@
 const recipeController = require('./controllers/recipeController');
+const usersController = require('./controllers/usersController');
+const sessionsController = require('./controllers/sessionsController');
+const appController = require('./controllers/appController');
+
 
 module.exports = app => {
-    app.get('/', recipeController.home);
+    app.get('/', appController.home);
+
+    app.get('/sessions/new', sessionsController.logInForm);
+    app.post('/sessions', sessionsController.create);
+    
+    app.get('/users/new', usersController.signUpForm);
+    app.post('/users', usersController.create);
+
+    app.use((req, res, next) => {
+        if(req.session.currentUser) {
+            next();
+        }else {
+            return res.redirect('/');
+        }
+
+    });
+
+    app.delete('/sessions',sessionsController.destroy);
     app.get('/recipes', recipeController.getAll);
     app.get('/recipes/new', recipeController.getNewForm);
     app.post('/recipes', recipeController.create);
