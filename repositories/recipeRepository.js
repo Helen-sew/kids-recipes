@@ -1,4 +1,5 @@
 const db = require('../db');
+const { myRecipes } = require('../controllers/recipeController');
 
 module.exports = {
     async getAll() {
@@ -43,7 +44,29 @@ module.exports = {
     async delete(item) {
         const result = await db.recipes.deleteOne(item);
         return result;
-    }
+    },
+    //update comments with new comment 
+    async updateComment(comment, recipeTitle) {
+        try{
+        await db.recipes.updateOne(
 
+            {title: {
+                '$regex': `^${recipeTitle}$`,
+                '$options': 'i'
+            }
+        }, 
+        { 
+            $push : { comments:comment}
+        })
+         return 
+        }catch (err) {
+            throw new Error(`Due to ${err.message}, you are not allowed to insert this item ${JSON.stringify(comments)}`);
+        }
+    },
+    async myRecipe(userId) {
+        const items = await db.recipes.find(userId).toArray();
+        return items;  
+    }
+    
 
 };

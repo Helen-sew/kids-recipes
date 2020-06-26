@@ -11,11 +11,20 @@
           <a class="nav-link active" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/recipes">Recipes</a>
+          <a class="nav-link" href="/recipes">All Recipes</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/recipes/new">Create Recipe</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/myRecipe">My Recipes</a>
+        </li>
+    
+        <div>
+          <form action="/sessions?_method=DELETE" , method='POST'>
+            <input type="submit" value="Log Out" style="background-color: #08753c; color:white; border-style: none;">
+          </form>
+        </div>
       </ul>
 
 
@@ -29,33 +38,28 @@
         
         <div class="form-group">
             <label for="img">Upload Image</label>
-            <input type="text" class="form-control border border-success" name="img" id="img" /> </br> 
+            <input type="text" class="form-control border border-success" name="img" id="img" value="<%=item.img%> "/> </br> 
         </div>
 
         <div class="form-group">    
             <label for="title">Recipe Title</label>
-            <input type="text" class='form-control border border-success' name="title" id="title"/>
+            <input type="text" class='form-control border border-success' name="title" id="title" value="<%= item.title%>"/>
         </div>
 
         <div class="form-group">
-            <label for="ingredients" placeholder="put each ingredient on its own line">Ingredients:</label>
-            <textarea type="text" class="form-control border border-success" name="ingredients" id="ingredients" rows="15" placeholder="put each ingredient on its own line"></textarea>
-        </div>
+            <label for="ingredients">Ingredients</label>
+            <textarea type="text" class="form-control border border-success" name="ingredients" id="ingredients" rows="15" placeholder="put each step on its own line"></textarea>
+          </div>
 
         <div class="form-group">
             <label for="directions">Directions</label> 
-            <textarea type="text" class="form-control border border-success" name="directions" id="directions" rows="15" placeholder="put each step on its own line"> </textarea>
+            <textarea type="text" class="form-control border border-success" name="directions" id="directions" rows="15" placeholder="put each step on its own line"></textarea>
         </div>
 
         <div class="form-group">
             <label for="toServe">To Serve</label> 
-            <textarea class="form-control border border-success" name="toServe" id="toServe" rows='3' ></textarea>
+            <textarea class="form-control border border-success" name="toServe" id="toServe" rows='3' placeholder="<%=item.toServe%>"></textarea>
         </div><br>
-
-        <div class="form-group">
-            <label for="comments">Comments</label> 
-            <textarea class="form-control border border-success" name="comments" id="comments" rows='5' ></textarea>
-        </div>
 
     </br>
         <button class="btn card-btn" type="submit">Edit Recipe</button>

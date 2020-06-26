@@ -2,101 +2,154 @@
 <html lang="en">
 
 <head>
-    <%- include('../partials/head.ejs') %>
+  <%- include('../partials/head.ejs') %>
 </head>
+
 <body>
+  <!-- Navigation -->
+  <ul class="nav fixed-top">
+    <li class="nav-item">
+      <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/recipes">All Recipes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/recipes/new">Create Recipe</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/myRecipe">My Recipes</a>
+    </li>
 
-<!-- Navigation -->
-    <ul class="nav">
+    <div>
+      <form action="/sessions?_method=DELETE" , method='POST'>
+        <input type="submit" value="Log Out" style="background-color: #08753c; color:white; border-style: none;">
+      </form>
+    </div>
+    <% if(isOwner) { %>
+    <div class="buttons-div">
+      <form action="/recipes/<%= item.title%>?_method=DELETE" method="POST">
+        <button class="btn card-btn" type="submit">Delete Recipe</button>
+      </form>
+      <span style="width: 30px"></span>
+      <div>
+        <a href="/recipes/<%= item.title%>/edit"><button class="btn card-btn" type="submit">Edit Recipe</button></a>
+      </div>
+    </div>
 
-        <li class="nav-item">
-          <a class="nav-link active" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/recipes">Recipes</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/recipes/new">Create Recipe</a>
-          </li>
-        <div>
-            <form action="/sessions?_method=DELETE", method='POST'>
-              <input type="submit" value="Log Out" style="background-color: #08753c; color:white; border-style: none;">
-              </form>
+    <% } %>
+  </ul>
+
+  <!-- Products -->
+  <div class="container show-container">
+
+    <div class='top-box'>
+      <div class="image-box">
+        <img src="<%=item.img%>" style="width: 500px; height: 350px;">
+      </div>
+      <div class="title-box">
+        <h1><%= item.title %></h1><br>
+      </div>
+    </div>
+
+
+    <div class="ing-dir-div">
+      <div class="card border-success mb-3" style="width: 90%;">
+        <div class="card-header">Ingredients</div>
+        <div class="card-body">
+          <% item.ingredients.forEach(ingredient => { %>
+          <p class=""><%=ingredient%></p>
+
+          <%});%>
+
+        </div>
+      </div>
+
+      <div class="card border-success mb-3" style="width: 90%;">
+        <div class="card-header">Directions</div>
+        <div class="card-body">
+          <% item.directions.forEach(step => { %>
+          <p class=""><%=step %></p>
+          <%});%>
+        </div>
+      </div>
+
+      <div class="card border-success mb-3" style="width: 90%;">
+        <div class="card-header">To Serve</div>
+        <div class="card-body">
+          <p><%=item.toServe%></p>
+        </div>
+      </div><br><br>
+<!-- comment box -->
+  <div class="row bootstrap snippets">
+    <div  style="width: 970px; margin: auto">
+      <div class="comment-wrapper">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3>Leave your comment here</h3>
           </div>
+          <div class="panel-body">
+            <form action="/recipes/<%= item.title%>/comments" method="post">
+              <textarea class="form-control" name="comments" placeholder="write a comment..." rows="3"></textarea>
+              <br>
+              <button type="submit" class="btn card-btn pull-right">Post</button>
+            </form>
+            <div class="clearfix"></div>
+            <hr>
+            <% if(item.comments.length > 0) { %>
+            <% item.comments.forEach((comment) => { %>
+            <ul class="media-list">
+              <li class="media">
+                <a href="#" class="pull-left">
+                  <img
+                    src="https://img.pngio.com/advanced-comments-plugin-comments-icon-blue-comment-icon-png-comment-icon-png-920_929.png"
+                    alt="" class="img-circle">    
+                <div class="media-body">
+                  <p class="text-success">@<%=comment.userId%></p>
+                  <p><%=comment.message%></p>
+                </div>
+              </li>
+     
+            </ul>
+            <form action="/recipes/<%=item.title%>/comments?_method=DELETE" method="POST">
+              <button class="btn card-btn" type="submit">Delete</button>
+            </form>
+            <% }) %>
+            <% } %>
+
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+
+<!-- end of comment box -->
  
-    </ul>
+
+  </div>
+</div>
+
+ 
+  <!-- <form action="/recipes/<%= item.title%>/comments" method="post">
+  <textarea class='form-control' name="comments" placeholder="Comment"></textarea>
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+</form> -->
 
 
-<!-- Products -->
-<div class="container show-container"> 
-    <div class="top-container">
-            <div class="image-title-div">
-                <h1><%= item.title %></h1>
-                <br>
-                <img src="<%=item.img%>" style="width: 500px; height: 350px;">    
-            </div>
-             <div class="buttons-div">                  
-                <div class="div-cus-btn">
-                    <form action="/recipes/<%= item.title%>?_method=DELETE" method="POST">
-                        <button class="btn card-btn btn-lg" type="submit">DELETE RECIPE</button>
-                    </form>
-                </div>
-                <br>
-                <div class="div-cus-btn">
-                    <a href="/recipes/<%= item.title%>/edit"><button class="btn card-btn btn-lg" type="submit">EDIT RECIPE</button></a>    
-                </div>
-                <br>
-                <br>
-                <p>To serve = <%=item.toServe%></p>
-            </div>
-    </div>
-    
-
-    <div class="ing-dir-div"> 
-        <div class="card border-success mb-3" style="width: 90%;">
-            <div class="card-header">Ingredients</div>
-            <div class="card-body">
-                <% item.ingredients.forEach(ingredient => { %>
-                 <p class=""><%=ingredient%></p>
-
-                <%});%>
-            
-        </div>
-    </div>
-    
-
-    
-        <div class="card border-success mb-3" style="width: 90%;">
-            <div class="card-header">Directions</div>
-            <div class="card-body">
-                <% item.directions.forEach(step => { %>
-                     <p class=""><%=step %></p>
-                <%});%>
-            </div>
-        </div>
 
 
-        <div class="card border-success mb-3" style="width: 90%;">
-            <div class="card-header">Comments</div>
-            <div class="card-body">
-                <p class=""><%=item.comments%></p>
-            </div>
-        </div>
-
-    </div>
-                         
-</div>        
-
-<!-- Footer -->
-<div class="footer">
+  <!-- Footer -->
+  <div class="footer">
 
     <!-- Grid row-->
     <div class="row">
-    
+
       <!-- Grid column -->
       <div class="col-md-12 py-4">
         <div class="mb-2 flex-center">
-    
+
           <!-- Facebook -->
           <a class="fb-ic">
             <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
@@ -124,19 +177,17 @@
         </div>
       </div>
       <!-- Grid column -->
-    
+
     </div>
     <!-- Grid row-->
-    
-    
+
+
     <!-- Copyright -->
     <div>© 2020 Copyright: KidsRecipes.com</div>
     <!-- Copyright -->
-    
-    </div>
-		
 
+  </div>
 
-    
 </body>
+
 </html>

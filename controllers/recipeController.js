@@ -1,20 +1,32 @@
 const recipeRepository = require('../repositories/recipeRepository');
+const db = require('../db');
+const { myRecipe } = require('../repositories/recipeRepository');
 
 module.exports = {
     async home (req, res){
         return res.render('recipes/home.ejs');
     },
     async getAll (req, res) {
+        const currentUser = req.session.currentUser;
         const items = await recipeRepository.getAll();
-        return res.render('recipes/index.ejs', {items})
+        return res.render('recipes/index.ejs', {items, currentUser})
     },
     async getNewForm (req, res) {
-        await res.render('recipes/new.ejs');
+        await res.render('recipes/new.ejs', {currentUser: req.session.currentUser});
     },
     async show (req, res) {
          try {
+            const currentUserId = req.session.currentUser._id;
             const item = await recipeRepository.show(req.params.title);
-            return res.render('recipes/show.ejs', {item});
+            const recipeUserId = item.userId;
+            //console.log('currentUserId', currentUserId);
+            //console.log('recipeUserId',recipeUserId)
+            let isOwner = false;
+            if(currentUserId === recipeUserId) {
+                isOwner = true
+            }
+            return res.render('recipes/show.ejs', {item, isOwner});
+        
         }catch (err) {
             return res.send(err.message);
         }
@@ -27,6 +39,7 @@ module.exports = {
         try{
             const newItem = {
                 'title': req.body.title,
+                "userId": req.session.currentUser._id,
                 'img' : req.body.img,
                 'ingredients': formattedIngredients,
                 'toServe': req.body.toServe,
@@ -75,7 +88,33 @@ module.exports = {
              return res.redirect('/recipes');
         }catch (err) {
             return res.send(err.message);
+        } 
+    },
+    async addComments (req, res) {
+        try{
+       // console.log(req.body)
+        let newComment = {
+            message: req.body.comments,
+            userId: req.session.currentUser.username
+        };
+        // console.log(newComment)
+        let recipeTitle = req.params.title;
+        await recipeRepository.updateComment(newComment,recipeTitle);
+        return res.redirect('/recipes/' + recipeTitle);
+    } catch(err) {
+        return res.send(err.message);
         }
+    },
+    
+    async myRecipes (req, res) {
+        try {
+          const currentUser = req.session.currentUser;
+          const items = await recipeRepository.myRecipe({userId: req.session.currentUser._id});
+            //console.log('items', items);
+          return res.render('recipes/myRecipe.ejs', {items, currentUser})
+        } catch(err) {
+            return res.send(err.message);
+          }
     }
-
+        
 }

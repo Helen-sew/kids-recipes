@@ -31,5 +31,11 @@ module.exports = app => {
     app.put('/recipes/:title', recipeController.update);
     app.delete('/recipes/:title', recipeController.delete);
 
+
+    
+    app.post('/recipes/:title/comments', recipeController.addComments);
+    app.get('/myRecipe', recipeController.myRecipes);
+    
+
 };
 

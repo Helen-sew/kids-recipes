@@ -41,7 +41,7 @@ body {
 
 .welcome-div {
     color: white;
-    margin-left: 550px;
+    margin-left: 400px;
     font-size: 17px;
     padding-top: 18px;
     font-style: italic;
@@ -110,7 +110,7 @@ h5  {
 
 .jumbotron {
     width: 1140px;
-    
+    height: 500px;
     background-image:url("https://loveoffood.sodexo.com/wp-content/uploads/2015/07/recipes-banner.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -119,6 +119,8 @@ h5  {
     color: white;
     font-family: 'Permanent Marker', cursive;
     text-align: center;
+    padding-top: 150px;
+    line-height: 3rem;
        
   }
 
@@ -135,7 +137,7 @@ h5  {
     margin: auto;
     padding-top: 10px;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 
 .card-img-top {
@@ -161,9 +163,14 @@ h5  {
 }
 
 
-.ad-container {
+.party-container {
     width: 1140px;
-    margin: auto;  
+    height: 500px;
+    margin: auto;
+    background-color: #faf0e6;
+    text-align: center;
+
+    
 }
 
 
@@ -180,42 +187,36 @@ h5  {
 .show-container {
     width: 100%;
     background-color: white;
-    padding: 30px;
+    padding:30px;
     
 }
-.top-container {
+.top-box {
     width: 100%;
-    height: 500px;
-    margin: auto;
+    height: 450px;
     display: flex;
     
-
-
 }
 
-.image-title-div {
-    width: 70%;
-    text-align: center;
-    margin-top: 30px;
-    
+.image-box {
+    width:60%;
+    margin: 55px;
+   
+}
 
+.title-box {
+    width: 40%;
+    height: 100px;
+    margin-top: 150px;
+    margin-right: 100px;
+    
+    
 }
 
 .buttons-div {
-    width: 30%;
+    margin-left: 270px;
     display: flex;
-    flex-direction: column;
-    margin-top: 110px;
-}
-
-.div-cus-btn {
-    width: 250px;
-    height: 60px;
-    background-color: #8cb369;
-    border-radius: 0.5rem;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bolder;
+    flex-direction: row;
+  
 }
 
 .ing-dir-div {
@@ -228,6 +229,26 @@ h5  {
     background-color: #8cb369; 
     color : white;
 }
+
+/* comment box */
+body{margin-top:20px;}
+
+.comment-wrapper .panel-body {
+    max-height:550px;
+    overflow: auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:55px;
+    height:55px;
+    
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:2px dashed #8cb369;
+    margin-bottom:25px;
+}
+
 
 /* Sign Up form */
 
@@ -254,3 +275,27 @@ h5  {
     padding: 30px;
     
 }
+
+/* myRecipe */
+
+
+/* Jumbotron */
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.myRecipe {
+    width: 1140px;
+    height: 300px;
+    background-image:url("https://www.myrecipes.com/img/misc/og-default.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    padding-top: 150px;
+    line-height: 3rem;
+    
+       
+  }
