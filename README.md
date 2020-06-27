@@ -159,6 +159,7 @@ Step 5 Heroku Deployment
 
 
 ## Challenges 
+* to allow owner to edit and delete the recipe 
 
 
 

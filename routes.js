@@ -34,6 +34,8 @@ module.exports = app => {
 
     
     app.post('/recipes/:title/comments', recipeController.addComments);
+    // app.delete('/recipes/:title/comments', recipeController.deleteComment);
+
     app.get('/myRecipe', recipeController.myRecipes);
     
 

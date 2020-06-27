@@ -105,15 +105,15 @@
                     src="https://img.pngio.com/advanced-comments-plugin-comments-icon-blue-comment-icon-png-comment-icon-png-920_929.png"
                     alt="" class="img-circle">    
                 <div class="media-body">
-                  <p class="text-success">@<%=comment.userId%></p>
+                  <p class="text-success"><%=`@${comment.userId}`%></p>
                   <p><%=comment.message%></p>
                 </div>
               </li>
      
             </ul>
-            <form action="/recipes/<%=item.title%>/comments?_method=DELETE" method="POST">
+            <!-- <form action="/recipes/<%=item.title%>/comments?_method=DELETE" method="POST">
               <button class="btn card-btn" type="submit">Delete</button>
-            </form>
+            </form> -->
             <% }) %>
             <% } %>
 

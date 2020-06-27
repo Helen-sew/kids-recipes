@@ -67,6 +67,22 @@ module.exports = {
         const items = await db.recipes.find(userId).toArray();
         return items;  
     }
-    
+    //delete comment
+    // async deleteComment(comment, recipeTitle) {
+    //     try{
+    //     await db.recipes.updateOne(
 
-};
+    //         {title: {
+    //             '$regex': `^${recipeTitle}$`,
+    //             '$options': 'i'
+    //         }
+    //     }, 
+    //     { 
+    //         $pull : { comments:comment}
+    //     })
+    //      return 
+    //     }catch (err) {
+    //         throw new Error(`Due to ${err.message}, you are not allowed to insert this item ${JSON.stringify(comments)}`);
+    //     }
+    // }
+}

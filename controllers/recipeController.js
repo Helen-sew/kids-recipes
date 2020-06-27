@@ -97,6 +97,7 @@ module.exports = {
             message: req.body.comments,
             userId: req.session.currentUser.username
         };
+        // console.log(req.session.currentUser.username);
         // console.log(newComment)
         let recipeTitle = req.params.title;
         await recipeRepository.updateComment(newComment,recipeTitle);
@@ -116,5 +117,21 @@ module.exports = {
             return res.send(err.message);
           }
     }
+    // async deleteComment (req, res) {
+    //     try{
+    //    // console.log(req.body)
+    //     let comment = {
+    //         message: req.body.comments,
+    //         userId: req.session.currentUser.username
+    //     };
+    //     // console.log(req.session.currentUser.username);
+    //     // console.log(newComment)
+    //     let recipeTitle = req.params.title;
+    //     await recipeRepository.deleteComment(comment,recipeTitle);
+    //     return res.redirect('/recipes/' + recipeTitle);
+    // } catch(err) {
+    //     return res.send(err.message);
+    //     }
         
-}
+    // }
+};
