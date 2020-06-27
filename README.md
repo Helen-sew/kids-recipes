@@ -16,7 +16,7 @@
 * https://git.heroku.com/kids-recipes-1.git
 
 ## Project motivation 
-Many parents nowadays are busy working to make ends meet. They are too busy to plan and prepare healthly meals for thier kids. This app allows them to search for recipes and plan ahead. With this app, parents can share recipe with other parents by creating thier own recipe. They can update, delete and leave comments on each recipe to share tips to make meal planning easier for busy parents.  At the end, they can view all the recipes created by themselve from myRecipes page. 
+As working parents, many of them are busy at work. They are too busy to plan and prepare healthly meals for thier kids. This app allows them to search for recipes and plan ahead. With this app, parents can share recipe with other parents by creating thier own recipe. They can update, delete, leave comments on each recipe and share tips to make meal planning easier.  This app also allows parents who created their recipes to orgaise and view them in myRecipe page and eventually to share with other parents. 
 
 ## Technologies 
 * Node.js, 
@@ -30,37 +30,52 @@ Many parents nowadays are busy working to make ends meet. They are too busy to p
 
 ## Wireframes 
 
-![](/Users/sewhelen/Desktop/projects/kids-recipes/public/images/Wireframes_kidsRecipes-1.jpg)
-
+![](images/Wireframe1.png)
+![](images/Wireframe2.png)
 
 ## Project scope and implementation : 
 
-Step 1 : initial set-up of app 
+### Step 1 : initial set-up of app 
 * set up a project folder and run npm init -y and npm install all the dependencies like express, jest, chai, method-override, mongodb, mongo-seeding etc.
 * touch server.js to require and use all the dependencies. 
-* touch recipeSchema.js and set up schema validation for database at MongoDB compass. 
-* touch index.js in db folder to connect database with MongoDB.
+* create db folder > touch recipeSchema.js and set up schema validation for database at MongoDB compass. 
+* Inside db folder > touch and set up index.js and connect MongoDB in server.js.
 
-Step 2 - performce test driven development (TDD) at controller level 
-* Touch recipeReposity.js and individual test.js files. Require jest and chai in individual test.js and write test cases for the 7 restful routes (i.e Index, Show, New, Create, Update, Edit, Delete routes).
+### Step 2 - perform test driven development (TDD) at controller level 
+* create repositories folder > touch recipeReposity.js and all test.js files. Require jest and chai in individual test.js and write test cases for the 7 restful routes (i.e Index, Show, New, Create, Update, Edit, Delete routes).
 
-Step 3 - Set up CRUD 
+### Step 3 - Set up CRUD 
 
-MVC chart here 
+Action  | URL   |  HTTP Verb  |  EJS view filename  |  Mongo method 
+------- | ----- | ----------- |  -----------------  |  ------------
+Home    | "/"   | GET         |  home.ejs           |    none 
+Index   | "/recipes" | GET    |  index.ejs          | find()   
+Show    | "/recipes/:title"   | GET  |  show.ejs   |    findOne()
+New     | "/recipes/new"    | GET         |  new.ejs |    none
+Create  | "/recipes"   | POST     |  none    |    insertOne()
+Edit    | "/recipes/:title/edit"   | GET         |  edit.ejs  |    findOne()
+Update  | "/recipes/:title"   | PUT         |  none    |    updateOne()
+Delete  | "/recipes/:title"   | DELETE         |  none  |    deleteOne()  
+log in  | "/sessions/new"   | GET         |  logInForm.ejs           |    - 
+log in   | "/sessions"   | POST        | none          |    findOne()
+log out    | "/sessions"   | DELETE         |  none           |   none
+Sign up    | "/users/new"   | GET         |  signUpForm.ejs           |    - 
+Sign up    | "/users"   | POST        |  none  |    insertOne
 
-#### Home Route ('/')
-* update appController.js - res.render home.ejs. 
+
+##### Home Route ('/')
+* create controllers folder > touch appController.js - res.render home.ejs. 
 * create home.ejs and add HTML and css.
 * update routes.js.
 
-#### Index Route ('/recipes')
-* Update recipeController.js - create res.render  index.ejs  - to render all the recipes.
+##### Index Route ('/recipes')
+* Inside controllers folder > touch recipeController.js - res.render index.ejs  - to render all the recipes.
 * create index.ejs and add HTML.
 * In index.ejs, link each title to it's show page. 
 * Update routes.js.  
 * Add a link to the create new recipe. 
 
-#### Show Route ('/recipes/:title')
+##### Show Route ('/recipes/:title')
 * Update recipeController.js - create res.render show.ejs.
 * Update routes.js. 
 * Create a `show.ejs` and add HTML
@@ -70,7 +85,7 @@ MVC chart here
 * add a link back to the index page.
 
 
-#### New Route ('/recipes/new')
+##### New Route ('/recipes/new')
 * Update recipeController.js - create res.render new.ejs
 * Update routes.js. 
 * create new.ejs and it should contain a form with the following:
@@ -83,21 +98,21 @@ MVC chart here
   - `input` type textarea for a `comments`
   - `input` type submit
 
-#### Create Route ('/recipes')
+##### Create Route ('/recipes')
 * Update recipeController.js. 
 * npm install method-override and update server.js with:-
   - const methodOverride = require('method-override');
   - app.use(express.urlencoded({ extended:true }));
   - app.use(methodOverride('_method'));
 * To `res.send` the `req.body` - it should send the data you inputted to your `new` form
-* Redirect route to the show page after create. 
+* Redirect route to the index page after create. 
 
 
-#### Edit Route ('/recipes/:title/edit)
+##### Edit Route ('/recipes/:title/edit)
 * Update recipeController.js - create re-render edit.ejs.
 * Update routes.js.
 * In `show.ejs`, add a link to your edit route
-* Create `edit.ejs` and it should contain a form with the following:
+* Create `edit.ejs` which contains a form with the following:
   - `form` with `action="/recipes/<%= item.title %>?_method=PUT" method="POST"`
   - `input` type text for a `title`
   - `input` type text for a `img`
@@ -107,21 +122,21 @@ MVC chart here
   - `input` type textarea for a `comments`
   - `input` type submit
 
-#### Put Route ('/recipes/:title)
+##### Put Route ('/recipes/:title)
 * Update recipeController.js.
 * Update routes.js.
 * upgrade ` edit.ejs` form to have the appropriate action and method
 * create link to  `res.redirect` to index page
 
 
-#### Delete Route ('/recipes/:title')
+##### Delete Route ('/recipes/:title')
 * Update recipeController.js.
 * Update routes.js.
 * In `show.ejs`, add a delete form with appropriate action and method:- 
   `action="/recipes/<%= item.title%>?_method=DELETE" method="POST"`.   
 * make delete route redirect back to index page.
 
-Step 4 Create user authentication layer
+### Step 4 Create user authentication layer
 
 #### To define user schema and perform user schema validation test 
 * create validator folder > create schema folder > touch users.js - define the user schema 
@@ -147,43 +162,23 @@ Step 4 Create user authentication layer
 
 #### To design user authentication flow 
 
-  chart here. 
+![](images/userFlow.png)
 
-Step 5 Heroku Deployment 
-
-
+### Step 5 Heroku Deployment 
 
 
 ## Special Features 
 
 #### myRecipe Page 
-* myRecipe page allows user to view all the recipes created by them. This is like their own recipe book. They can edit,update and delete recipes as and when they like. 
+* myRecipe page allows user to view all the recipes created by them. This is like their own recipe book. They can edit,update and delete recipes. 
 
  
 
 ## Challenges 
-* to allow owner of the recipe to edit and delete the recipe only. It has resolved with the help of Wifred.
+* to allow owner of the recipe to edit and delete the recipe. It has resolved with the help of Wifred.
 * wanted to create a live comment panel in each recipe page to add and delete comments.  Is not fully implemented. At the moment user still cannot delete comment.
 
 
 
 
-
-
-
   
-
-* Full MVC file structure 
-* Full CRUD - 7 restful routes 
-* One Github commit per day
-* Deploy online to Heroku 
-* A README. Md file 
-* Have a link to hosted working app in the README.md file in GitHub repo
-* TDD - Test Cases for controllers
-* Schema Validation - avj  (or can just do it MongoDB database/compass??)
-* Sign up/log in functionality, with encrypted passwords & an authorisation flow 
-* Use Ejs partials
-* Use css framework — bootstrap ??? 
-* In README.md - include User story and wireframes. 
-
-#Tests
