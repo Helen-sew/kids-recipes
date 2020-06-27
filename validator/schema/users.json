@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5eedbf427c37620d65eafc80"
+  },
+  "username": "helen sew",
+  "password": "$2b$10$WUsPuE6oNGTei0FzTEj0Oe64oOTmveIPfbgPDEhoJ30xCpjHCSX2i",
+  "createdAt": {
+    "$date": "2020-06-20T07:48:18.752Z"
+  },
+  "updatedAt": {
+    "$date": "2020-06-20T07:48:18.752Z"
+  }
+},{
+  "_id": {
+    "$oid": "5ef40cb9c1caca0d830a016b"
+  },
+  "username": "Jane",
+  "password": "$2b$10$ow48VF8uIrsbyoGZSDqceueNIj7mbCSzjgNnlI3eD0R3Jgplrvbsq",
+  "createdAt": {
+    "$date": "2020-06-25T02:32:25.255Z"
+  },
+  "updatedAt": {
+    "$date": "2020-06-25T02:32:25.255Z"
+  }
+}]

@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const MONGO_URL = 'mongodb://localhost:27017';  
-console.log('mongo', process.env.MONGODB_URI)
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017';  
+// console.log('mongo', process.env.MONGODB_URI)
 const DB_NAME = 'kidsRecipes';
 const COLLECTIONS = {
     RECIPES: 'recipes',

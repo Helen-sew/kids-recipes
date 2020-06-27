@@ -154,12 +154,13 @@ Step 5 Heroku Deployment
 #### myRecipe Page 
 * myRecipe page allows user to view all the recipes created by them. This is like their own recipe book. They can edit,update and delete recipes as and when they like. 
 
-#### Comment panel in each recipe page 
-* allow users to add and delete comments.  Partially done. At the moment user still cannot delete comment. 
-
+ 
 
 ## Challenges 
-* to allow owner to edit and delete the recipe 
+* to allow owner of the recipe to edit and delete the recipe only. It has resolved with the help of Wifred.
+* wanted to create a live comment panel in each recipe page to add and delete comments.  Is not fully implemented. At the moment user still cannot delete comment.
+
+
 
 
 

@@ -18,3 +18,28 @@ module.exports = {
         }
     }
 }
+
+
+// {
+//     $jsonSchema: {
+//       type: 'object',
+//       required: [
+//         'username',
+//         'password'
+//       ],
+//       properties: {
+//         username: {
+//           bsonType: 'string'
+//         },
+//         password: {
+//           bsonType: 'string'
+//         },
+//         createdAt: {
+//           bsonType: 'date'
+//         },
+//         upatedAt: {
+//           bsonType: 'date'
+//         }
+//       }
+//     }
+//   }
