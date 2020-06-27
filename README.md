@@ -1,21 +1,24 @@
-# Table of contents
+## Table of contents
 * Project Title 
 * Project Demo
 * Project Motivation 
 * Technologies 
-* Wireframes and user authentication flow 
+* Wireframes 
+* Project scope and implementation 
+* Special features 
 * Challenges 
 
-#Project Title : Kid's Recipes App for Caring Mothers
-
-Project motivation : this app allows user to search for kid's friendly and easy family recipes. Meanwhile, allows them to share recipes by creating, updating and deleting. 
+## Project Title : Kid's Recipes App for Caring Mothers
 
 
-Project Demo
+## Project Demo
 https://helen-sew.github ....
 https://heroku
 
-Technologies 
+## Project motivation 
+Many parents nowadays are busy working to make ends meet. They are too busy to plan and prepare healthly meals for thier kids. This app allows them to search for recipes and plan ahead. With this app, parents can share recipe with other parents by creating thier own recipe. They can update, delete and leave comments on each recipe to share tips to make meal planning easier for busy parents.  At the end, they can view all the recipes created by themselve from myRecipes page. 
+
+## Technologies 
 * Node.js, 
 * Express
 * EJS (use partials)
@@ -25,98 +28,143 @@ Technologies
 * Bootstrap 
 * CSS 
 
-Project scope and implementation : 
+## Project scope and implementation : 
 
 Step 1 : initial set-up of app 
-- set up a project folder and run npm init -y and npm install all the dependencies like express, jest, chai, method-override, mongodb, mongo-seeding etc
-- touch server.js to require and use all the dependencies. 
-- set up schema validation for database at MongoDB compass 
-- touch index.js in db folder to connect database with MongoDB 
+* set up a project folder and run npm init -y and npm install all the dependencies like express, jest, chai, method-override, mongodb, mongo-seeding etc.
+* touch server.js to require and use all the dependencies. 
+* touch recipeSchema.js and set up schema validation for database at MongoDB compass. 
+* touch index.js in db folder to connect database with MongoDB.
 
-Step 2 - performce test driven development (TDD) at controller level. 
-Touch recipeReposity.js and individual test.js files. Require jest and chai in individual test.js and write test cases for the 7 restful routes. They are Index, Show, New, Create, Update, Edit, Delete routes. 
+Step 2 - performce test driven development (TDD) at controller level 
+* Touch recipeReposity.js and individual test.js files. Require jest and chai in individual test.js and write test cases for the 7 restful routes (i.e Index, Show, New, Create, Update, Edit, Delete routes).
 
 Step 3 - Set up CRUD 
 
-Home Route ('/')
-- update recipeController.js
-- create home.ejs 
-- update route.js - res.render home.ejs 
+MVC chart here 
+
+#### Home Route ('/')
+* update appController.js - res.render home.ejs. 
+* create home.ejs and add HTML and css.
+* update routes.js.
+
+#### Index Route ('/recipes')
+* Update recipeController.js - create res.render  index.ejs  - to render all the recipes.
+* create index.ejs and add HTML.
+* In index.ejs, link each title to it's show page. 
+* Update routes.js.  
+* Add a link to the create new recipe. 
+
+#### Show Route ('/recipes/:title')
+* Update recipeController.js - create res.render show.ejs.
+* Update routes.js. 
+* Create a `show.ejs` and add HTML
+  - show the title
+  - show the img 
+  - show the ingredients, directions, toServe and comments
+* add a link back to the index page.
 
 
-Index Route ('/recipes')
-- Update recipeController.js
-- create index.ejs
-- Update route.js -  create res.render  index.ejs  - to render all the recipes. 
-- Add a link to the create new recipe. 
-
-Show Route
-- In `route.js` make a show route, be sure to follow the Restful convention
-- Update controller.js - create a mongo query and `res.send` your data as a string
-- upgrade your `index.ejs` so that each title links to its show page
-- Create a `show.ejs` and add HTML
-*  show the title
-*  show the entry
-*  show whether the ship is broken or not
- - add a link back to the index page
--  Update route.js - `res.send` to a `res.render` of your `show.ejs`
-
-
-New
- create a `new` route in your `server.js` - be sure to follow the Restful convention
- create new.ejs 
- Create the view, it should contain a form with the following:
-  - `form` with `action="/logs"` and `method="POST"`
+#### New Route ('/recipes/new')
+* Update recipeController.js - create res.render new.ejs
+* Update routes.js. 
+* create new.ejs and it should contain a form with the following:
+  - `form` with `action="/recipes"` and `method="POST"`
   - `input` type text for a `title`
-  - `input` type textarea for an `entry`
-  - `input` type checkbox for `shipIsBroken`
+  - `input` type text for a `img`
+  - `input` type textarea for an `ingredients`
+  - `input` type textarea for an `directions`
+  - `input` type textarea for a `toServe`
+  - `input` type textarea for a `comments`
   - `input` type submit
 
-### Create
-1. create a `create` route in your `server.js` - be sure to follow the Restful convention
- 1. just have it `res.send('received')` as the response for now
-1. use and configure `body-parser` in your `server.js` (note, this package was once separate, but has been added back in to express [more details](https://expressjs.com/en/4x/api.html#express.urlencoded)
-1. check to make sure it works by changing the `res.send` from a string to sending the `req.body` - it should send the data you inputted to your `new` form
-1. upgrade your data
-  1. change the input of your checkbox to be true/false rather than `on`
-  1. now when you check your `res.send(req.body)` you should see true/false rather than 'on/off' - the rest of your data should stay the same
-1. don't forget to `git add` and `git commit` your work, give yourself an informative commit message so you can trace back your work, if you need to
-
-### Upgrade your Create Route
-1. upgrade your code to create your log in MongoDB
-1. have your route redirect to the show page after create
-1. don't forget to `git add` and `git commit` your work, give yourself an informative commit message so you can trace back your work, if you need to
-1. Stretch: make a seed file and seed it
+#### Create Route ('/recipes')
+* Update recipeController.js. 
+* npm install method-override and update server.js with:-
+  - const methodOverride = require('method-override');
+  - app.use(express.urlencoded({ extended:true }));
+  - app.use(methodOverride('_method'));
+* To `res.send` the `req.body` - it should send the data you inputted to your `new` form
+* Redirect route to the show page after create. 
 
 
+#### Edit Route ('/recipes/:title/edit)
+* Update recipeController.js - create re-render edit.ejs.
+* Update routes.js.
+* In `show.ejs`, add a link to your edit route
+* Create `edit.ejs` and it should contain a form with the following:
+  - `form` with `action="/recipes/<%= item.title %>?_method=PUT" method="POST"`
+  - `input` type text for a `title`
+  - `input` type text for a `img`
+  - `input` type textarea for an `ingredients`
+  - `input` type textarea for an `directions`
+  - `input` type textarea for a `toServe`
+  - `input` type textarea for a `comments`
+  - `input` type submit
 
-### Edit Route
-1. Fill out your Restful table
-1. in your `index.ejs`, add a link to your edit route
-1. create your edit route in your `server.js`
-1. create your `edit.ejs`
-1. test it to make sure it works as expected (be sure to populate your form with your log's data)
-1. don't forget to `git add` and `git commit` your work, give yourself an informative commit message so you can trace back your work, if you need to
-
-### Put Route
-1. Fill out your Restful table
-1. upgrade your` edit.ejs` form to have the appropriate action and method
-1. create your PUT route
-1. First, just have it `res.send` the updated log and check it is as expected
-1. change the `res.send` to a `res.redirect` to your index page
-1. don't forget to `git add` and `git commit` your work, give yourself an informative commit message so you can trace back your work, if you need to
-
-
-### Delete Route
-1. Fill out your Restful table
-1. in your `index.ejs`, add a delete form
-1. install and configure `method-override`
-1. upgrade your delete form to have the appropriate action and method
-1. make your delete route in your `server.js`
-1. make your delete route delete your log and redirect back to your index route
-1. don't forget to `git add` and `git commit` your work, give yourself an informative commit message so you can trace back your work, if you need to
+#### Put Route ('/recipes/:title)
+* Update recipeController.js.
+* Update routes.js.
+* upgrade ` edit.ejs` form to have the appropriate action and method
+* create link to  `res.redirect` to index page
 
 
+#### Delete Route ('/recipes/:title')
+* Update recipeController.js.
+* Update routes.js.
+* In `show.ejs`, add a delete form with appropriate action and method:- 
+  `action="/recipes/<%= item.title%>?_method=DELETE" method="POST"`.   
+* make delete route redirect back to index page.
+
+Step 4 Create user authentication layer
+
+#### To define user schema and perform user schema validation test 
+* create validator folder > create schema folder > touch users.js - define the user schema 
+* Inside validator folder > touch usersValidator.js - install and use ajv, import user schema and write validation functions 
+* Inside validator folder > create tests folder > touch usersValidator.spec.js - to install and use jest, chai, chai-asserttype, import usersValidator and write test cases 
+* Update user schema in Mongodb Compass. 
+* Inside db folder > update index.js to include users collection. 
+
+#### performce test driven development (TDD) at controller level 
+* Inside repositories folder > touch usersReposity.js - require db and bcrypt to write functions to create new user and retrive existing user when log in. 
+* Inside repositories folder > tests folder > touch userCreate.test.js and touch usersFind.test.js to require chai, db and usersReposity.js and run test. 
+
+#### For new user to sign up 
+* Inside controller folder > touch usersController.js - require usersRepository.js and usersValidator.js. To validate req.body (input from user) and if pass validation, create new user and redirect user to home.page to log in. 
+* Create signUpForm.ejs which include form with "action="/users" method="POST".
+* Update routes.js to create post route and render signUpForm.ejs 
+
+#### For existing user to log in 
+* Update server.js - install express-session and require and use it in server.js.
+* Inside controller foler > touch sessionsController.js - require usersReposity.js and bcrypt. To write functions to render log in form, find username and compare user's password and to destroy session (log out). 
+* Create logInForm.ejs which include form with "action="/sessions" method="POST".
+* Update routes.js to create post route and render logInForm.ejs. 
+
+#### To design user authentication flow 
+
+  chart here. 
+
+Step 5 Heroku Deployment 
+
+
+
+
+## Special Features 
+
+#### myRecipe Page 
+* myRecipe page allows user to view all the recipes created by them. This is like their own recipe book. They can edit,update and delete recipes as and when they like. 
+
+#### Comment panel in each recipe page 
+* allow users to add and delete comments.  Partially done. At the moment user still cannot delete comment. 
+
+
+## Challenges 
+
+
+
+
+
+  
 
 * Full MVC file structure 
 * Full CRUD - 7 restful routes 

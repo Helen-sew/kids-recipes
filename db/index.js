@@ -5,8 +5,8 @@ console.log('mongo', process.env.MONGODB_URI)
 const DB_NAME = 'kidsRecipes';
 const COLLECTIONS = {
     RECIPES: 'recipes',
-    USERS: 'users',
-    BLOGS: 'blogs'
+    USERS: 'users'
+    
 };
 
 const client = new MongoClient(MONGO_URL, { useUnifiedTopology: true });
@@ -18,7 +18,7 @@ module.exports = {
         const db = connection.db(DB_NAME);
         this.recipes = db.collection(COLLECTIONS.RECIPES);
         this.users = db.collection(COLLECTIONS.USERS);
-        this.blogs = db.collection(COLLECTIONS.BLOGS);
+        
     },
     disconnect () {
         return client.close();
