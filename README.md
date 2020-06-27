@@ -12,8 +12,8 @@
 
 
 ## Project Demo
-https://helen-sew.github ....
-https://heroku
+* https://helen-sew.github.io/kids-recipes/
+* https://git.heroku.com/kids-recipes-1.git
 
 ## Project motivation 
 Many parents nowadays are busy working to make ends meet. They are too busy to plan and prepare healthly meals for thier kids. This app allows them to search for recipes and plan ahead. With this app, parents can share recipe with other parents by creating thier own recipe. They can update, delete and leave comments on each recipe to share tips to make meal planning easier for busy parents.  At the end, they can view all the recipes created by themselve from myRecipes page. 
@@ -27,6 +27,11 @@ Many parents nowadays are busy working to make ends meet. They are too busy to p
 * MongoDB
 * Bootstrap 
 * CSS 
+
+## Wireframes 
+
+![](/Users/sewhelen/Desktop/projects/kids-recipes/public/images/Wireframes_kidsRecipes-1.jpg)
+
 
 ## Project scope and implementation : 
 
