@@ -7,6 +7,7 @@
 * Project scope and implementation 
 * Special features 
 * Challenges 
+* Improvements 
 
 ## Project Title : Kid's Recipes App for Caring Mothers
 
@@ -16,7 +17,8 @@
 * https://git.heroku.com/kids-recipes-1.git
 
 ## Project motivation 
-As working parents, many of them are busy at work. They are too busy to plan and prepare healthly meals for thier kids. This app allows them to search for recipes and plan ahead. With this app, parents can share recipe with other parents by creating thier own recipe. They can update, delete, leave comments on each recipe and share tips to make meal planning easier.  This app also allows parents who created their recipes to orgaise and view them in myRecipe page and eventually to share with other parents. 
+With the fast pace of our lives and need to produce quick,healthy meals and the ability to hold recipes and ingredients in one handy space becomes a must. This recipe app allows busy parents to find recipes and plan ahead. Parents are allows to create thier own recipes, share with other parents and they are allow to update, delete and leave comments on each recipe. 
+
 
 ## Technologies 
 * Node.js, 
@@ -175,8 +177,12 @@ Sign up    | "/users"   | POST        |  none  |    insertOne
  
 
 ## Challenges 
-* to allow owner of the recipe to edit and delete the recipe. It has resolved with the help of Wifred.
-* wanted to create a live comment panel in each recipe page to add and delete comments.  Is not fully implemented. At the moment user still cannot delete comment.
+* to allow owner of the recipe to edit and delete recipe. 
+* wanted to create a live comment panel in each recipe page to add and delete comments.  It is not fully implemented. At the moment user still cannot delete comment.
+
+## Improvements 
+* to allow user to create shopping list. 
+* to have search function to search through receipes by keywords. 
 
 
 
