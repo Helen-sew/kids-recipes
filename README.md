@@ -9,7 +9,7 @@
 * Challenges 
 * Improvements 
 
-## Project Title : Kid's Recipes App for Caring Mothers
+## Project Title : Kid's Recipes App 
 
 
 ## Project Demo
