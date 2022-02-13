@@ -7,7 +7,7 @@
   "description": "Kids Recipes App for Caring Mothers",
   "main": "index.js",
   "dependencies": {
-    "ajv": "^6.12.2",
+    "ajv": "^6.12.3",
     "bcrypt": "^5.0.0",
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
